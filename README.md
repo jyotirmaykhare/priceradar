@@ -1,6 +1,3 @@
-[README (1).md](https://github.com/user-attachments/files/25622319/README.1.md)
-<div align="center">
-
 # 🛒 SmartPrice AI — PriceRadar
 
 **Track prices. Predict drops. Always buy at the right time.**
@@ -11,10 +8,12 @@
 [![Railway](https://img.shields.io/badge/Backend-Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)](https://railway.app)
 [![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-priceradar--blue.vercel.app-brightgreen?style=for-the-badge&logo=vercel&logoColor=white)](https://priceradar-blue.vercel.app)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Jyotirmay%20Khare-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jyotirmay-khare)
 
 SmartPrice AI is a full-stack price comparison web app that tracks product prices across Amazon, Flipkart, and more — analyzes yearly price trends, compares discounts, predicts future price drops using AI, and redirects you straight to the best deal.
 
-[Features](#-features) · [Tech Stack](#-tech-stack) · [Project Structure](#-project-structure) · [Quick Start](#-quick-start) · [Deployment](#-deployment) · [How It Works](#-how-it-works)
+[🌐 Live Demo](https://priceradar-blue.vercel.app) · [Features](#-features) · [Tech Stack](#-tech-stack) · [Project Structure](#-project-structure) · [Quick Start](#-quick-start) · [Deployment](#-deployment) · [How It Works](#-how-it-works)
 
 </div>
 
@@ -242,14 +241,37 @@ Resilience strategies used across all scrapers:
 
 ---
 
-## 🗺 Roadmap
+## 🗺 Future Upgrades
 
-- [ ] AI price drop prediction with seasonal trend analysis
-- [ ] Email / SMS price alert notifications
-- [ ] Persistent price history with a database (PostgreSQL / SQLite)
-- [ ] Browser extension for Chrome / Firefox
-- [ ] Product wishlist with bulk price tracking
-- [ ] User accounts and cross-device alert sync
+### 📊 Data & Analytics
+- [ ] **Full 1-year price history** — store and display 365 days of price data per product per platform
+- [ ] **Real-time price graph** — live-updating chart that refreshes without page reload using WebSockets or polling
+- [ ] **Price heatmap calendar** — visualize cheapest days/months to buy a product category
+- [ ] **All-time low / high indicators** — flag when a product hits its lowest recorded price
+- [ ] **Price volatility score** — show how frequently a product's price changes
+
+### 🤖 AI & Predictions
+- [ ] **AI price drop prediction** — ML model trained on historical trends to predict drop timing and depth
+- [ ] **Seasonal sale detection** — auto-detect Diwali, Big Billion Days, End of Season patterns
+- [ ] **Smart buy score** — composite score combining price trend, discount, and rating
+- [ ] **Fake discount detector** — flag inflated MRPs used to show misleading discounts
+
+### 🔔 Alerts & Notifications
+- [ ] **Email / SMS price alerts** — notify when a tracked product hits the target price
+- [ ] **Telegram / WhatsApp bot** — send deal alerts directly to messaging apps
+- [ ] **Daily digest** — morning summary of price drops on your wishlist
+
+### 👤 User Features
+- [ ] **User accounts** — login with Google, saved wishlist and alerts across devices
+- [ ] **Product wishlist** — bulk tracking with a unified dashboard
+- [ ] **Compare history** — save and revisit past comparisons
+- [ ] **Shareable deal links** — share a price comparison snapshot via URL
+
+### 🧩 Platform & Extension
+- [ ] **Browser extension** — Chrome/Firefox extension that auto-injects price comparisons on Amazon & Flipkart product pages
+- [ ] **Mobile PWA** — installable Progressive Web App with push notifications
+- [ ] **More platforms** — Tata Cliq, JioMart, Reliance Digital, Vijay Sales
+- [ ] **International support** — expand beyond India (eBay, AliExpress, Walmart)
 
 ---
 
@@ -274,8 +296,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 <div align="center">
 
-Built with ❤️ by [Jyotirmay Khare](https://github.com/jyotirmaykhare)
+Built with ❤️ by [Jyotirmay Khare](https://github.com/jyotirmaykhare) · [LinkedIn](https://www.linkedin.com/in/jyotirmay-khare)
 
-⭐ Star this repo if it saved you money!
+🌐 [priceradar-blue.vercel.app](https://priceradar-blue.vercel.app) · ⭐ Star this repo if it saved you money!
 
 </div>
