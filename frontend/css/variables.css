@@ -1,0 +1,20 @@
+:root {
+  --bg:#f4efe5; --bg-alt:#ece6d8; --bg-card:#faf7f2; --bg-dark:#1c1a16;
+  --border:#d6cfc0; --border-light:#e4ddd0; --border-dark:#bfb8aa;
+  --text:#1e1b16; --text-2:#4a4540; --text-3:#7a746c; --text-inv:#f4efe5;
+  --accent:#2d6a4f; --accent-light:#40916c; --accent-xlt:#d8f3dc;
+  --green:#276749; --green-bg:#eaf5ee;
+  --red:#b94040; --red-bg:#fceaea;
+  --amber:#9a6000; --amber-bg:#fef3dc;
+  --blue:#2c5f8a; --blue-bg:#e8f0f8;
+  --amz:#e8870a; --flip:#2874f0; --myn:#e0355a; --mes:#8f4fc2; --croma:#d43030; --nykaa:#fc2779;
+  --font-serif:'DM Serif Display',Georgia,serif;
+  --font-sans:'DM Sans',system-ui,sans-serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:24px; --r-full:999px;
+  --shadow-sm:0 1px 3px rgba(60,45,20,.07),0 1px 2px rgba(60,45,20,.05);
+  --shadow-md:0 4px 12px rgba(60,45,20,.09),0 2px 4px rgba(60,45,20,.05);
+  --shadow-lg:0 12px 36px rgba(60,45,20,.13),0 4px 8px rgba(60,45,20,.06);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --t-fast:120ms; --t-base:220ms;
+}

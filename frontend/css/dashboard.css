@@ -1,0 +1,73 @@
+/* Product cards */
+.product-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--shadow-sm); transition:box-shadow var(--t-base),border-color var(--t-base),transform var(--t-base); display:flex; flex-direction:column; }
+.product-card:hover { box-shadow:var(--shadow-md); border-color:var(--border-dark); transform:translateY(-2px); }
+.product-card-img { position:relative; background:var(--bg-alt); aspect-ratio:1/1; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.product-card-img img { width:100%; height:100%; object-fit:contain; padding:12px; }
+.product-img-fallback { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:var(--text-3); }
+.platform-badge { position:absolute; top:8px; left:8px; font-size:.62rem; font-family:var(--font-mono); font-weight:700; padding:3px 8px; border-radius:var(--r-full); }
+.platform-badge--amazon   { background:#fff3dc; color:var(--amz); }
+.platform-badge--flipkart { background:#e8f0ff; color:var(--flip); }
+.platform-badge--myntra   { background:#fce8ed; color:var(--myn); }
+.platform-badge--meesho   { background:#f0e8f8; color:var(--mes); }
+.platform-badge--croma    { background:#fde8e8; color:var(--croma); }
+.platform-badge--nykaa    { background:#ffe8f3; color:var(--nykaa); }
+.product-discount { position:absolute; top:8px; right:8px; font-size:.65rem; font-family:var(--font-mono); font-weight:700; padding:3px 8px; border-radius:var(--r-full); background:var(--green-bg); color:var(--green); }
+.product-card-body { padding:12px; flex:1; display:flex; flex-direction:column; gap:8px; }
+.product-card-name { font-size:.82rem; font-weight:500; line-height:1.35; color:var(--text); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.product-card-pricing { display:flex; align-items:baseline; gap:7px; flex-wrap:wrap; }
+.product-card-price { font-family:var(--font-mono); font-size:1rem; font-weight:500; color:var(--accent); }
+.product-mrp { font-family:var(--font-mono); font-size:.75rem; color:var(--text-3); text-decoration:line-through; }
+.product-rating { font-family:var(--font-mono); font-size:.68rem; color:var(--amber); }
+.product-card-actions { display:flex; gap:7px; margin-top:auto; }
+.product-card-actions .btn { flex:1; justify-content:center; font-size:.75rem; padding:6px 8px; }
+
+/* Best deal card */
+.best-deal-card { background:linear-gradient(135deg,rgba(39,103,73,.06),rgba(45,106,79,.02)); border:1.5px solid rgba(39,103,73,.3); border-radius:var(--r-lg); padding:20px 24px; margin-bottom:16px; }
+.best-deal-inner { display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.best-deal-badge { font-family:var(--font-mono); font-size:.65rem; color:var(--green); background:var(--green-bg); padding:4px 10px; border-radius:var(--r-full); align-self:flex-start; }
+.best-deal-price { font-family:var(--font-mono); font-size:2rem; font-weight:500; color:var(--accent); flex:1; }
+.best-deal-meta { font-size:.8rem; color:var(--text-2); font-family:var(--font-mono); }
+
+/* Compare grid */
+.compare-grid { display:flex; flex-direction:column; gap:8px; }
+.compare-row { display:flex; align-items:center; gap:12px; padding:11px 14px; border-radius:var(--r-md); border:1px solid var(--border-light); background:var(--bg-alt); cursor:pointer; text-decoration:none; color:inherit; transition:all var(--t-fast); }
+.compare-row:hover { background:var(--bg-card); border-color:var(--border-dark); box-shadow:var(--shadow-sm); }
+.compare-row--best { border-color:rgba(39,103,73,.35); background:rgba(39,103,73,.04); }
+.compare-row--best:hover { border-color:var(--green); }
+.compare-plat-badge { width:30px; height:30px; border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; font-size:.68rem; font-weight:700; flex-shrink:0; }
+.compare-plat-badge--amazon   { background:#fff3dc; color:var(--amz);  border:1px solid #f0d890; }
+.compare-plat-badge--flipkart { background:#e8f0ff; color:var(--flip); border:1px solid #b8d0f8; }
+.compare-plat-badge--myntra   { background:#fce8ed; color:var(--myn);  border:1px solid #f0b0c0; }
+.compare-plat-badge--meesho   { background:#f0e8f8; color:var(--mes);  border:1px solid #d0b0e8; }
+.compare-plat-badge--croma    { background:#fde8e8; color:var(--croma);border:1px solid #f0b0b0; }
+.compare-plat-badge--nykaa    { background:#ffe8f3; color:var(--nykaa);border:1px solid #f8b0d0; }
+.compare-info { flex:1; min-width:0; }
+.compare-plat-name { font-size:.82rem; font-weight:600; display:block; margin-bottom:2px; }
+.compare-plat-meta { font-size:.62rem; color:var(--text-3); font-family:var(--font-mono); display:block; }
+.compare-track { display:block; margin-top:5px; height:2px; background:var(--border); border-radius:1px; overflow:hidden; }
+.compare-fill { display:block; height:100%; border-radius:1px; transition:width .8s var(--ease); }
+.compare-price-col { text-align:right; flex-shrink:0; }
+.compare-price { font-family:var(--font-mono); font-size:.92rem; font-weight:500; display:block; }
+.compare-price--best { color:var(--green); }
+.compare-best-label { font-family:var(--font-mono); font-size:.62rem; color:var(--green); display:block; }
+.compare-diff { font-family:var(--font-mono); font-size:.62rem; color:var(--red); display:block; }
+
+/* Forecast */
+.forecast-card { background:var(--bg-card); border:1px solid var(--border); border-radius:var(--r-lg); padding:16px 18px; box-shadow:var(--shadow-sm); display:flex; gap:12px; align-items:flex-start; }
+.forecast-icon { font-size:1.4rem; flex-shrink:0; }
+.forecast-body { flex:1; }
+.forecast-body h4 { font-size:.85rem; font-weight:600; margin-bottom:4px; }
+.forecast-body p { font-size:.78rem; color:var(--text-2); line-height:1.5; }
+.forecast-tag { flex-shrink:0; font-family:var(--font-mono); font-size:.68rem; font-weight:500; padding:4px 9px; border-radius:var(--r-md); align-self:flex-start; }
+.forecast-tag--down { background:var(--green-bg); color:var(--green); }
+.forecast-tag--sale { background:var(--amber-bg); color:var(--amber); }
+.forecast-tag--buy  { background:var(--blue-bg);  color:var(--blue); }
+
+/* Alerts list */
+.alert-item { display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--bg-card); border:1px solid var(--border-light); border-radius:var(--r-md); transition:border-color var(--t-fast); }
+.alert-item:hover { border-color:var(--border-dark); }
+.alert-icon { font-size:1.1rem; flex-shrink:0; }
+.alert-info { flex:1; min-width:0; }
+.alert-product { display:block; font-size:.85rem; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.alert-detail { display:block; font-size:.68rem; color:var(--text-3); font-family:var(--font-mono); margin-top:2px; }
+.alert-date { font-size:.68rem; color:var(--text-3); font-family:var(--font-mono); flex-shrink:0; }

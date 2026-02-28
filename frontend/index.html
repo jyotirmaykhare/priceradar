@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PriceRadar — Live Price Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+<div class="bg-texture" aria-hidden="true"></div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><span id="toastIcon">✓</span><span id="toastMsg"></span></div>
+
+<!-- Alert Modal -->
+<div class="modal-overlay" id="alertModal">
+  <div class="modal">
+    <button class="modal-close" id="modalCloseBtn">✕</button>
+    <div class="modal-icon">🔔</div>
+    <h3>Set a Price Alert</h3>
+    <p>We'll email you the moment the price drops below your target on any platform.</p>
+    <div class="form-group">
+      <label for="alertEmail">Email address</label>
+      <input type="email" id="alertEmail" placeholder="you@example.com" />
+    </div>
+    <div class="form-group">
+      <label for="alertProductName">Product</label>
+      <input type="text" id="alertProductName" placeholder="e.g. Samsung Galaxy S24" />
+    </div>
+    <div class="form-group">
+      <label for="alertPrice">Target price (₹)</label>
+      <input type="number" id="alertPrice" placeholder="e.g. 58000" />
+    </div>
+    <div class="alert-error" id="alertError"></div>
+    <div class="modal-actions">
+      <button class="btn btn--ghost" id="modalCancelBtn">Cancel</button>
+      <button class="btn btn--primary" id="setAlertBtn">Set Alert</button>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo"><span class="logo-mark">◈</span><span class="logo-text">PriceRadar</span></a>
+    <nav class="header-nav">
+      <a href="#search-section">Search</a>
+      <a href="#results-section">Results</a>
+      <a href="#compare-section">Compare</a>
+      <a href="#alerts-section">Alerts</a>
+    </nav>
+    <div class="header-actions">
+      <span class="live-indicator"><span class="live-dot"></span><span>Live</span></span>
+      <button class="btn btn--outline btn--sm" id="headerAlertBtn">🔔 Alert me</button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero + Search -->
+<section class="hero" id="search-section">
+  <div class="container">
+    <div class="hero-eyebrow">Real products · Live prices · All platforms</div>
+    <h1 class="hero-title">Stop overpaying.<br /><em>Start tracking.</em></h1>
+    <p class="hero-subtitle">Search any product and instantly compare live prices from Amazon, Flipkart, Myntra, Meesho, Croma & more — all in one place.</p>
+
+    <div class="search-box" id="searchBox">
+      <div class="search-icon">⌕</div>
+      <input type="text" id="searchInput" class="search-input"
+        placeholder="Search any product — iPhone 15, boAt headphones, Nike shoes, Samsung TV…"
+        autocomplete="off" />
+      <button class="btn btn--primary" id="searchBtn">Search →</button>
+    </div>
+
+    <!-- Platform filter pills -->
+    <div class="platform-pills" id="platformPills">
+      <button class="pill pill--active" data-platform="amazon">Amazon</button>
+      <button class="pill pill--active" data-platform="flipkart">Flipkart</button>
+      <button class="pill pill--active" data-platform="myntra">Myntra</button>
+      <button class="pill pill--active" data-platform="meesho">Meesho</button>
+      <button class="pill pill--active" data-platform="croma">Croma</button>
+      <button class="pill pill--active" data-platform="nykaa">Nykaa</button>
+      <button class="pill pill--active" data-platform="snapdeal">Snapdeal</button>
+    </div>
+
+    <!-- Search progress bar -->
+    <div class="search-progress" id="searchProgress" style="display:none">
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+      <div class="progress-labels" id="progressLabels"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Results section -->
+<section class="results-section container" id="results-section" style="display:none">
+
+  <div class="results-header">
+    <div>
+      <h2 class="results-title" id="resultsTitle">Results</h2>
+      <span class="results-meta" id="resultsMeta"></span>
+    </div>
+    <div class="results-controls">
+      <div class="sort-group">
+        <label>Sort by</label>
+        <select id="sortSelect">
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+          <option value="discount">Best Discount</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+      <button class="btn btn--outline btn--sm" id="filterToggle">⚙ Filter</button>
+    </div>
+  </div>
+
+  <!-- Filter bar (collapsible) -->
+  <div class="filter-bar" id="filterBar" style="display:none">
+    <div class="filter-group">
+      <label>Min price (₹)</label>
+      <input type="number" id="filterMinPrice" placeholder="0" />
+    </div>
+    <div class="filter-group">
+      <label>Max price (₹)</label>
+      <input type="number" id="filterMaxPrice" placeholder="Any" />
+    </div>
+    <div class="filter-group">
+      <label>Min discount</label>
+      <select id="filterDiscount">
+        <option value="0">Any</option>
+        <option value="10">10%+</option>
+        <option value="20">20%+</option>
+        <option value="30">30%+</option>
+        <option value="50">50%+</option>
+      </select>
+    </div>
+    <button class="btn btn--primary btn--sm" id="applyFilters">Apply</button>
+    <button class="btn btn--ghost btn--sm" id="clearFilters">Clear</button>
+  </div>
+
+  <!-- Platform tabs -->
+  <div class="platform-tabs" id="platformTabs"></div>
+
+  <!-- Product grid -->
+  <div class="product-grid" id="productGrid"></div>
+
+  <!-- Load more -->
+  <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
+    <button class="btn btn--outline" id="loadMoreBtn">Load more results</button>
+  </div>
+
+</section>
+
+<!-- Price Comparison section (shown when a product is selected) -->
+<section class="compare-section container" id="compare-section" style="display:none">
+
+  <div class="compare-header">
+    <div class="compare-product-info">
+      <div class="compare-thumb" id="compareThumb">📦</div>
+      <div>
+        <h2 class="compare-title" id="compareTitle">Product Name</h2>
+        <span class="compare-meta" id="compareMeta">Comparing across all platforms</span>
+      </div>
+    </div>
+    <button class="btn btn--primary btn--sm" id="compareAlertBtn">🔔 Alert me on drop</button>
+  </div>
+
+  <!-- Best deal highlight -->
+  <div class="best-deal-card" id="bestDealCard"></div>
+
+  <!-- All platform prices -->
+  <div class="compare-grid" id="compareGrid"></div>
+
+  <!-- Price history chart -->
+  <div class="card card--chart" style="margin-top:20px">
+    <div class="card-label-row">
+      <span class="card-label">Price trend (simulated history)</span>
+      <div class="tabs" id="chartTabs">
+        <button class="tab tab--active" data-range="1M">1M</button>
+        <button class="tab" data-range="3M">3M</button>
+        <button class="tab" data-range="6M">6M</button>
+      </div>
+    </div>
+    <div class="chart-area"><canvas id="priceChart"></canvas></div>
+  </div>
+
+  <!-- AI Forecast -->
+  <div class="forecast-row" id="forecastRow"></div>
+
+</section>
+
+<!-- Alerts section -->
+<section class="alerts-section container" id="alerts-section">
+  <div class="section-heading">
+    <h2>Your saved alerts</h2>
+    <span class="section-count" id="alertsCount">0 alerts</span>
+  </div>
+  <div class="alerts-empty" id="alertsEmpty">
+    <span>🔔</span>
+    <p>No alerts set yet. Search a product and tap "Alert me on drop" to get notified.</p>
+  </div>
+  <ul class="alerts-list" id="alertsList"></ul>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span class="footer-logo">◈ PriceRadar</span>
+    <span class="footer-note">Live prices from real platforms · Not affiliated with any retailer</span>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/tracker.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
